@@ -7,17 +7,18 @@ public class Movement : MonoBehaviour
     public float moveX=0f;
     public float moveY=0f;
     public float rotation=0f;
+    public float maxVelocity=100f;
+    public bool maxVelocityAchieved=false;
+    float velocity;
     // Start is called before the first frame update
     void Start()
     {
-        Debug.Log(Mathf.Sin(Mathf.PI/2f));
     }
 
     // Update is called once per frame
     void FixedUpdate()
     {
         Move();
-        //Debug.Log(moveX+" "+moveY);
     }
 
     void Move()
@@ -26,5 +27,11 @@ public class Movement : MonoBehaviour
         temp.x+=moveX;
         temp.z+=moveY;
         gameObject.transform.position=temp;
+        velocity=Mathf.Sqrt((moveX*moveX)+(moveY*moveY));
+    }
+
+    public float GetVelocity()
+    {
+        return velocity;
     }
 }
