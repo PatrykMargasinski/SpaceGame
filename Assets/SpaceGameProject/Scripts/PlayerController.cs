@@ -2,41 +2,41 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerMovement : MonoBehaviour
+public class PlayerController : MonoBehaviour
 {
     Movement movement;
+    Shooting shooting;
     float oldVelocity=0;
     float newXmove=0;
     float newYmove=0;
     void Start()
     {
         movement=gameObject.GetComponent<Movement>();
+        shooting=gameObject.GetComponent<Shooting>();
     }
     void KeyboardReader()
     {
 
         if(Input.GetKey(KeyCode.W))
         {
-            newXmove=movement.moveX+Mathf.Cos(movement.rotation)*0.001f;
-            newYmove=movement.moveY-Mathf.Sin(movement.rotation)*0.001f;
+            newXmove=movement.moveX+Mathf.Cos(movement.rotation)*0.01f;
+            newYmove=movement.moveY-Mathf.Sin(movement.rotation)*0.01f;
         }
         else if(Input.GetKey(KeyCode.S))
         {
-            newXmove=movement.moveX-Mathf.Cos(movement.rotation)*0.001f;
-            newYmove=movement.moveY+Mathf.Sin(movement.rotation)*0.001f;
+            newXmove=movement.moveX-Mathf.Cos(movement.rotation)*0.01f;
+            newYmove=movement.moveY+Mathf.Sin(movement.rotation)*0.01f;
         }
         if(Input.GetKey(KeyCode.Q))
         {
-            gameObject.transform.Rotate(0,-1f,0);
+            gameObject.transform.Rotate(0,-1f*Time.deltaTime*80,0);
             movement.rotation=gameObject.transform.rotation.eulerAngles.y*0.0174532925f;
         }
         else if(Input.GetKey(KeyCode.E))
         {
-            gameObject.transform.Rotate(0,1f,0);
+            gameObject.transform.Rotate(0,1f*Time.deltaTime*80,0);
             movement.rotation=gameObject.transform.rotation.eulerAngles.y*0.0174532925f;
         }
-
-        Debug.Log(ComputeVelocity(newXmove,newYmove)+ " "+movement.maxVelocity);
 
         if(ComputeVelocity(newXmove,newYmove)<movement.maxVelocity)
         {
