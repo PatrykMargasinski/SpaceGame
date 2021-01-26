@@ -6,7 +6,6 @@ public class PlayerController : MonoBehaviour
 {
     Movement movement;
     Shooting shooting;
-    float oldVelocity=0;
     float newXmove=0;
     float newYmove=0;
     void Start()
@@ -19,29 +18,23 @@ public class PlayerController : MonoBehaviour
 
         if(Input.GetKey(KeyCode.W))
         {
-            newXmove=movement.moveX+Mathf.Cos(movement.rotation)*0.01f;
-            newYmove=movement.moveY-Mathf.Sin(movement.rotation)*0.01f;
+            newXmove=movement.moveX+Mathf.Cos(movement.transform.rotation.eulerAngles.y*Mathf.Deg2Rad)*0.01f;
+            newYmove=movement.moveY-Mathf.Sin(movement.transform.rotation.eulerAngles.y*Mathf.Deg2Rad)*0.01f;
+            movement.SetNews(newXmove,newYmove);
         }
         else if(Input.GetKey(KeyCode.S))
         {
-            newXmove=movement.moveX-Mathf.Cos(movement.rotation)*0.01f;
-            newYmove=movement.moveY+Mathf.Sin(movement.rotation)*0.01f;
+            newXmove=movement.moveX-Mathf.Cos(movement.transform.rotation.eulerAngles.y*Mathf.Deg2Rad)*0.01f;
+            newYmove=movement.moveY+Mathf.Sin(movement.transform.rotation.eulerAngles.y*Mathf.Deg2Rad)*0.01f;
+            movement.SetNews(newXmove,newYmove);
         }
         if(Input.GetKey(KeyCode.Q))
         {
             gameObject.transform.Rotate(0,-1f*Time.deltaTime*80,0);
-            movement.rotation=gameObject.transform.rotation.eulerAngles.y*0.0174532925f;
         }
         else if(Input.GetKey(KeyCode.E))
         {
             gameObject.transform.Rotate(0,1f*Time.deltaTime*80,0);
-            movement.rotation=gameObject.transform.rotation.eulerAngles.y*0.0174532925f;
-        }
-
-        if(ComputeVelocity(newXmove,newYmove)<movement.maxVelocity)
-        {
-            movement.moveX=newXmove;
-            movement.moveY=newYmove;
         }
     }
 
