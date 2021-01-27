@@ -18,7 +18,6 @@ public class Movement : MonoBehaviour
 
     public void SetNews(float x, float y)
     {
-        Debug.Log(GetVelocity(x,y)+ " "+GetVelocity());
         if(GetVelocity(x,y)>maxVelocity && GetVelocity(x,y)>GetVelocity())
         {
             var modificator=maxVelocity/GetVelocity(x,y);
