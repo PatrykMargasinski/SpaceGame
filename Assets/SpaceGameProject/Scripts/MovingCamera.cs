@@ -4,9 +4,7 @@ using UnityEngine;
 
 public class MovingCamera : MonoBehaviour
 {
-    // Start is called before the first frame update
-    public GameObject objectToFollow;
-    private Vector3 pos;
+    public GameObject ship;
     void Start()
     {
         
@@ -15,8 +13,8 @@ public class MovingCamera : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        pos=objectToFollow.transform.position;
-        pos.y=transform.position.y;
-        transform.position=pos;
+        var temp=ship.transform.position;
+        temp.y=transform.position.y;
+        transform.position=temp;
     }
 }
