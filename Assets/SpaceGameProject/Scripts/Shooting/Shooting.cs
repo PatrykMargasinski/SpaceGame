@@ -2,13 +2,16 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Shooting : MonoBehaviour, IShooting
+public class Shooting : MonoBehaviour
 {
     public GameObject projectile;
     private Movement projMovement;
+    private ProjectileController projectileController;
     void Start()
     {
         projMovement=projectile.GetComponent<Movement>();
+        projectileController=projectile.GetComponent<ProjectileController>();
+        projectileController.owner=gameObject;
     }
     public void Shoot()
     {

@@ -2,17 +2,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerController : MonoBehaviour, ICollisional
+public class PlayerController : Controller, ICollisional, IShooter
 {
-    Movement movement;
-    Shooting shooting;
     float newXmove=0;
     float newYmove=0;
-    bool underCollision=false;
     void Start()
     {
         movement=gameObject.GetComponent<Movement>();
         shooting=gameObject.GetComponent<Shooting>();
+        collision=GetComponent<Collision>();
     }
     void KeyboardReader()
     {
@@ -40,40 +38,22 @@ public class PlayerController : MonoBehaviour, ICollisional
 
         if(Input.GetKeyDown(KeyCode.Space))
         {
-            shooting.Shoot();
+            Shoot();
         }
     }
-    // Update is called once per frame
+
+    public Collision GetCollision()
+    {
+        return collision;
+    }
+
     void Update()
     {
         KeyboardReader();
-        CheckCollision();
     }
 
-    public Vector3 GetPosition()
+    public void Shoot()
     {
-        return transform.position;
-    }
-    public float GetRadius()
-    {
-        return 0.5f;
-    }
-    public void CollisionReaction(Movement movement)
-    {
-        movement.SetNews(-movement.moveX,-movement.moveY);
-    }
-
-    void CheckCollision()
-    {
-        foreach(ICollisional col in SpaceGameManager.activeObjects)
-        {
-            if(Vector3.Distance(GetPosition(),col.GetPosition())<=GetRadius()+col.GetRadius() && underCollision==false && col!=(ICollisional)this)
-            {
-                col.CollisionReaction(this.movement);
-                underCollision=true;
-                return;
-            }
-        }
-        underCollision=false;
+        shooting.Shoot();
     }
 }
