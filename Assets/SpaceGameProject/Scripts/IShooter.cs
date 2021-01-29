@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public interface IShooting
+public interface IShooter
 {
     // Start is called before the first frame update
     void Shoot();

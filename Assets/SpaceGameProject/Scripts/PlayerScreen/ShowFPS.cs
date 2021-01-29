@@ -6,7 +6,6 @@ using UnityEngine.UI;
  public class ShowFPS : MonoBehaviour {
      Text fpsText;
      float deltaTime;
-     float speed=0;
 
      void Start()
      {

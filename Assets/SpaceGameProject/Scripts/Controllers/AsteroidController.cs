@@ -2,9 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AsteroidController : MonoBehaviour, ICollisional
+public class AsteroidController : Controller, ICollisional
 {
-    Movement movement;
     public float radius;
 
     void Start()
@@ -25,5 +24,9 @@ public class AsteroidController : MonoBehaviour, ICollisional
     {
         Debug.Log("Collision: "+gameObject.name);
         movement.SetNews(-movement.moveX,-movement.moveY);
+    }
+    public GameObject GetGameObject()
+    {
+        return gameObject;
     }
 }

@@ -2,10 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerController : MonoBehaviour, ICollisional
+public class PlayerController : Controller, ICollisional, IShooter
 {
-    Movement movement;
-    Shooting shooting;
     float newXmove=0;
     float newYmove=0;
     bool underCollision=false;
@@ -40,16 +38,16 @@ public class PlayerController : MonoBehaviour, ICollisional
 
         if(Input.GetKeyDown(KeyCode.Space))
         {
-            shooting.Shoot();
+            Shoot();
         }
     }
-    // Update is called once per frame
+
     void Update()
     {
         KeyboardReader();
         CheckCollision();
     }
-
+    //ICollisional
     public Vector3 GetPosition()
     {
         return transform.position;
@@ -61,6 +59,15 @@ public class PlayerController : MonoBehaviour, ICollisional
     public void CollisionReaction(Movement movement)
     {
         movement.SetNews(-movement.moveX,-movement.moveY);
+    }
+    public GameObject GetGameObject()
+    {
+        return gameObject;
+    }
+    //IShooter
+    public void Shoot()
+    {
+        shooting.Shoot();
     }
 
     void CheckCollision()

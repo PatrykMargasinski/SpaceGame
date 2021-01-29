@@ -6,7 +6,6 @@ public class Movement : MonoBehaviour
 {
     public float moveX=0f;
     public float moveY=0f;
-    bool moveChanging=false;
     public float maxVelocity=100f;
     public bool maxVelocityAchieved=false;
     public bool underCollision=false;
