@@ -6,11 +6,11 @@ public class PlayerController : Controller, ICollisional, IShooter
 {
     float newXmove=0;
     float newYmove=0;
-    bool underCollision=false;
     void Start()
     {
         movement=gameObject.GetComponent<Movement>();
         shooting=gameObject.GetComponent<Shooting>();
+        collision=GetComponent<Collision>();
     }
     void KeyboardReader()
     {
@@ -42,45 +42,18 @@ public class PlayerController : Controller, ICollisional, IShooter
         }
     }
 
+    public Collision GetCollision()
+    {
+        return collision;
+    }
+
     void Update()
     {
         KeyboardReader();
-        CheckCollision();
     }
-    //ICollisional
-    public Vector3 GetPosition()
-    {
-        return transform.position;
-    }
-    public float GetRadius()
-    {
-        return 0.5f;
-    }
-    public void CollisionReaction(Movement movement)
-    {
-        movement.SetNews(-movement.moveX,-movement.moveY);
-    }
-    public GameObject GetGameObject()
-    {
-        return gameObject;
-    }
-    //IShooter
+
     public void Shoot()
     {
         shooting.Shoot();
-    }
-
-    void CheckCollision()
-    {
-        foreach(ICollisional col in SpaceGameManager.activeObjects)
-        {
-            if(Vector3.Distance(GetPosition(),col.GetPosition())<=GetRadius()+col.GetRadius() && underCollision==false && col!=(ICollisional)this)
-            {
-                col.CollisionReaction(this.movement);
-                underCollision=true;
-                return;
-            }
-        }
-        underCollision=false;
     }
 }

@@ -12,7 +12,6 @@ public class Shooting : MonoBehaviour
         projMovement=projectile.GetComponent<Movement>();
         projectileController=projectile.GetComponent<ProjectileController>();
         projectileController.owner=gameObject;
-        Debug.Log("Shot: "+gameObject.name);
     }
     public void Shoot()
     {

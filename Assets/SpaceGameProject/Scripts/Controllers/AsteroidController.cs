@@ -4,29 +4,14 @@ using UnityEngine;
 
 public class AsteroidController : Controller, ICollisional
 {
-    public float radius;
-
     void Start()
     {
         movement=GetComponent<Movement>();
-        SpaceGameManager.activeObjects.Add(this);
+        collision=GetComponent<Collision>();
     }
 
-    public Vector3 GetPosition()
+    public Collision GetCollision()
     {
-        return transform.position;
-    }
-    public float GetRadius()
-    {
-        return radius;
-    }
-    public void CollisionReaction(Movement movement)
-    {
-        Debug.Log("Collision: "+gameObject.name);
-        movement.SetNews(-movement.moveX,-movement.moveY);
-    }
-    public GameObject GetGameObject()
-    {
-        return gameObject;
+        return collision;
     }
 }
