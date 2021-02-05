@@ -43,8 +43,8 @@ public class SpeedVectors : MonoBehaviour
     {
         if(Mathf.Abs(movement.GetVelocity())>=0.0001f)
         {
-            float rot=Mathf.Atan(movement.moveY/movement.moveX);
-            middle.transform.eulerAngles=new Vector3(0,0,rot*Mathf.Rad2Deg+(movement.moveX<0?180:0));
+            float rot=Mathf.Atan(movement.speedY/movement.speedX);
+            middle.transform.eulerAngles=new Vector3(0,0,rot*Mathf.Rad2Deg+(movement.speedX<0?180:0));
         }
     }
 }

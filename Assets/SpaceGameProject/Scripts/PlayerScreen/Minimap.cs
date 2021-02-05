@@ -6,9 +6,10 @@ using UnityEngine.UI;
 public class Minimap : MonoBehaviour
 {
     float mod=90f/300f;
+    public Sprite sprite;
     void Awake()
     {
-
+        //GetComponent<Image>();
     }
     void Update()
     {
