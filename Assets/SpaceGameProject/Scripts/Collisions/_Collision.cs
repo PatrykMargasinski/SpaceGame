@@ -5,7 +5,7 @@ using UnityEngine;
 public abstract class Collision : MonoBehaviour
 {
     public float radius;
-    public abstract void CollisionReaction();
+    public abstract void CollisionReaction(Collision col);
     public Vector3 GetPosition()
     {
         return gameObject.transform.position;
@@ -16,24 +16,29 @@ public abstract class Collision : MonoBehaviour
     }
     public void CheckCollision()
     {
-        foreach(ICollisional col in SpaceGameManager.activeObjects)
+        foreach(Collision col in SpaceGameManager.collisionalObjects)
         {
-            bool isCollisionDistance=Vector3.Distance(GetPosition(), col.GetCollision().GetPosition()) <= GetRadius() + col.GetCollision().GetRadius();
-            bool notSelfCollision=this.gameObject!=col.GetCollision().gameObject;
+            bool isCollisionDistance=Vector3.Distance(GetPosition(), col.GetPosition()) <= GetRadius() + col.GetRadius();
+            bool notSelfCollision=GetPosition()!=col.GetPosition();
             if(isCollisionDistance && notSelfCollision)
             {
-                CollisionReaction();
+                CollisionReaction(col);
                 return;
             }
         }
     }
     void Start()
     {
-        SpaceGameManager.activeObjects.Add((ICollisional)gameObject.GetComponent<Controller>());
+        SpaceGameManager.collisionalObjects.Add(this);
     }
 
     void Update()
     {
         CheckCollision();
+    }
+
+    void OnDestroy()
+    {
+        bool success=SpaceGameManager.collisionalObjects.Remove(this);
     }
 }

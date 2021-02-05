@@ -2,16 +2,16 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AsteroidController : Controller, ICollisional
+public class Projectile : SpaceObject
 {
+    public GameObject owner;
     void Start()
     {
         movement=GetComponent<Movement>();
         collision=GetComponent<Collision>();
     }
-
-    public Collision GetCollision()
+    void OnDestroy()
     {
-        return collision;
+        SpaceGameManager.collisionalObjects.Remove(this.collision);
     }
 }

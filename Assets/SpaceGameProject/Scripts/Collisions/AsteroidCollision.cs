@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class AsteroidCollision : Collision
 {
-    public override void CollisionReaction()
+    public override void CollisionReaction(Collision col)
     {
-        Debug.Log("Asteroid reaction");
+        Debug.Log("Asteroid reaction "+col.GetType().ToString());
     }
 }

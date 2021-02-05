@@ -4,9 +4,38 @@ using UnityEngine;
 
 public class SpaceGameManager : MonoBehaviour
 {
-    static public List<ICollisional> activeObjects;
+    AsteroidFactory asteroidFactory;
+    public GameObject toGenerate;
+    public float radius;
+    public float radiusMin;
+    public float maxGenerationValue=0f;
+    private float generationValue=0f;
+    private int counter=0;
+    public int maxAmount;
+    static public List<GameObject> visibleObjects;
+    static public List<Collision> collisionalObjects;
+    static public List<Health> healthObjects;
+
     void Awake()
     {
-        activeObjects=new List<ICollisional>();
+        collisionalObjects=new List<Collision>();
+    }
+
+    void Start()
+    {
+        asteroidFactory=GetComponent<AsteroidFactory>();
+    }
+    void Update()
+    {
+        if(counter<maxAmount)
+        {
+            generationValue+=Time.deltaTime;
+        }
+        if(generationValue>=maxGenerationValue)
+        {
+            counter++;
+            asteroidFactory.Generate();
+            generationValue=0;
+        }
     }
 }

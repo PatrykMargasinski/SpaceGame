@@ -2,42 +2,43 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Movement : MonoBehaviour
+public abstract class Movement : MonoBehaviour
 {
-    public float moveX=0f;
-    public float moveY=0f;
+    public float speedX=0f;
+    public float speedY=0f;
     public float maxVelocity=100f;
-    public bool maxVelocityAchieved=false;
-    public bool underCollision=false;
+
+    public abstract void ChangeVelocityVector();
 
     void Update()
     {
         Move();
+        ChangeVelocityVector();
     }
 
-    public void SetNews(float x, float y)
+    public void SetNewVelocityVector(float x, float y)
     {
         if(GetVelocity(x,y)>maxVelocity && GetVelocity(x,y)>GetVelocity())
         {
             var modificator=maxVelocity/GetVelocity(x,y);
-            moveX=x*modificator;moveY=y*modificator;
+            speedX=x*modificator;speedY=y*modificator;
         }
         else
         {
-        moveX=x; moveY=y;
+        speedX=x; speedY=y;
         }
     }
 
     void Move()
     {
         var temp=gameObject.transform.position;
-        temp.x+=moveX*Time.deltaTime;
-        temp.z+=moveY*Time.deltaTime;
+        temp.x+=speedX*Time.deltaTime;
+        temp.z+=speedY*Time.deltaTime;
         gameObject.transform.position=temp;
     }
     public float GetVelocity()
     {
-        return Mathf.Sqrt((moveX*moveX)+(moveY*moveY));
+        return Mathf.Sqrt((speedX*speedX)+(speedY*speedY));
     }
     public float GetVelocity(float x, float y)
     {
