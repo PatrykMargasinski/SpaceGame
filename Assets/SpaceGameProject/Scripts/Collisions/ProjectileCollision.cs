@@ -9,7 +9,11 @@ public class ProjectileCollision : Collision
         Debug.Log("Projectile reaction "+col.GetType().ToString());
         if(col.gameObject!=GetComponent<Projectile>().owner)
         {
-            Destroy(col.gameObject);
+            Health health=col.gameObject.GetComponent<Health>();
+            
+            if(health!=null) health.hitPoints-=5;
+            else Destroy(col.gameObject);
+
             Destroy(gameObject);
         }
     }

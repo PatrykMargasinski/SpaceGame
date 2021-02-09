@@ -16,7 +16,7 @@ public class EnemyMovement : Movement
         transform.Rotate(0,-90,0);
         if(Vector3.Distance(gameObject.transform.position,playerShip.transform.position)>5f)
         {
-            newXmove=-Mathf.Cos(transform.rotation.eulerAngles.y*Mathf.Deg2Rad)*speed*Time.deltaTime;
+            newXmove=Mathf.Cos(transform.rotation.eulerAngles.y*Mathf.Deg2Rad)*speed*Time.deltaTime;
             newYmove=-Mathf.Sin(transform.rotation.eulerAngles.y*Mathf.Deg2Rad)*speed*Time.deltaTime;
         }
         else

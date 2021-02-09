@@ -6,6 +6,7 @@ public class EnemyShooting : Shooting
 {
     public GameObject playerShip;
     public float shootingCooldown=1f;
+    public float shootingRange=10f;
     private float shootingTime=1f;
     public override bool ShootCondition()
     {
@@ -13,7 +14,7 @@ public class EnemyShooting : Shooting
         if(shootingTime>1f)
         {
             shootingTime=0f;
-            return Vector3.Distance(gameObject.transform.position,playerShip.transform.position)<20f;
+            return Vector3.Distance(gameObject.transform.position,playerShip.transform.position)<shootingRange;
         }
         return false;
     }

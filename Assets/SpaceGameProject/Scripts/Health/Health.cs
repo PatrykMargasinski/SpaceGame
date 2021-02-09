@@ -5,23 +5,17 @@ using UnityEngine.UI;
 
 public class Health : MonoBehaviour
 {
-    public int health;
-    public GameObject canvas;
-    public GameObject healthBarPrefab;
-    private GameObject healthBar;
-    private GameObject healthSlider;
+    public int hitPoints=10;
     void Start()
     {
-        var healthBarContainer=Instantiate(
-            healthBarPrefab,
-            gameObject.transform.position,
-            Quaternion.identity
-            );
-        healthBarContainer.transform.SetParent(canvas.transform);
+        
     }    
 
     void Update()
     {
-
+        if(hitPoints<=0)
+        {
+            Destroy(gameObject);
+        }
     }
 }
