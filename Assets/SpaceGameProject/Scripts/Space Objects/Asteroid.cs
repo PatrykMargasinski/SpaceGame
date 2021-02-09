@@ -6,8 +6,7 @@ public class Asteroid : SpaceObject
 {
     void Start()
     {
-        movement=GetComponent<Movement>();
-        collision=GetComponent<Collision>();
+        
     }
 
     void OnDestroy()

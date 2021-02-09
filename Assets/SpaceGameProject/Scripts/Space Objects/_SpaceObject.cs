@@ -8,12 +8,9 @@ public class SpaceObject : MonoBehaviour
     {
         SpaceGameManager.visibleObjects.Add(this.gameObject);
     }
-    protected Shooting shooting;
-    protected Movement movement;
-    protected Collision collision;
 
     void OnDestroy()
     {
-        //SpaceGameManager.visibleObjects.Remove(this.gameObject);
+        SpaceGameManager.visibleObjects.Remove(this.gameObject);
     }
 }

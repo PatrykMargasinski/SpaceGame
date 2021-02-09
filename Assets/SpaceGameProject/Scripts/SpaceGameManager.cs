@@ -4,27 +4,30 @@ using UnityEngine;
 
 public class SpaceGameManager : MonoBehaviour
 {
+    public GameObject player;
     AsteroidFactory asteroidFactory;
     public GameObject toGenerate;
     public float radius;
     public float radiusMin;
+    public float disappearingRadius;
     public float maxGenerationValue=0f;
     private float generationValue=0f;
     private int counter=0;
     public int maxAmount;
     static public List<GameObject> visibleObjects;
     static public List<Collision> collisionalObjects;
-    static public List<Health> healthObjects;
 
     void Awake()
     {
         collisionalObjects=new List<Collision>();
+        visibleObjects=new List<GameObject>();
     }
 
     void Start()
     {
         asteroidFactory=GetComponent<AsteroidFactory>();
     }
+
     void Update()
     {
         if(counter<maxAmount)

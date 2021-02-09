@@ -221,7 +221,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b75f8199d3d565440a16bfd47ceef00e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  radius: 1
+  radius: 0.5
 --- !u!114 &160046561
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -239,6 +239,19 @@ MonoBehaviour:
   maxVelocity: 100
   playerShip: {fileID: 1549097276}
   speed: 100
+--- !u!114 &160046562
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 160046559}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 903c417af621439419c8df4bd895c8cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hitPoints: 10
 --- !u!114 &160046565
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -254,6 +267,19 @@ MonoBehaviour:
   projectile: {fileID: 6010534345172292802, guid: d9f2b2d3db5b7794ea5f7857c974fa56, type: 3}
   playerShip: {fileID: 1549097276}
   shootingCooldown: 1
+  shootingRange: 10
+--- !u!114 &160046567
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 160046559}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f6e70e9af32dec04785dbc16c9b23d8d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &178938192
 GameObject:
   m_ObjectHideFlags: 0
@@ -615,9 +641,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e694296c3018e04eaff5a55aa0ce154, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  player: {fileID: 1549097276}
   toGenerate: {fileID: 230825567141975522, guid: 1f7e514706a6ea34e92ce9eae3e9c122, type: 3}
   radius: 10
   radiusMin: 20
+  disappearingRadius: 10
   maxGenerationValue: 10
   maxAmount: 10
 --- !u!114 &314120604
@@ -636,9 +664,9 @@ MonoBehaviour:
   radius: 20
   radiusMin: 10
   asteroids:
-  - {fileID: 230825567141975522, guid: 1f7e514706a6ea34e92ce9eae3e9c122, type: 3}
-  - {fileID: 7201948329548764448, guid: 78398bcbacf4f284896719e9a6f77b22, type: 3}
-  - {fileID: 8060735805647228886, guid: 2687d3e65160be54d87684bfccfd671a, type: 3}
+  - {fileID: 3907140717289950808, guid: c80078c68f1d0be4ea04f7af7454b2f9, type: 3}
+  - {fileID: 562180934353575112, guid: c0f1696dab6c2764e80f31f8f4b7461c, type: 3}
+  - {fileID: 9076408517371344071, guid: 4474d32bace630747a540105176328e2, type: 3}
 --- !u!1 &572754784
 GameObject:
   m_ObjectHideFlags: 0
@@ -1016,7 +1044,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1727189117453521203, guid: 001a63e9eb301434083ccf9fe488bd55, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 30
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 1727189117453521203, guid: 001a63e9eb301434083ccf9fe488bd55, type: 3}
       propertyPath: m_LocalRotation.w
@@ -1464,6 +1492,7 @@ GameObject:
   - component: {fileID: 1549097278}
   - component: {fileID: 1549097282}
   - component: {fileID: 1549097277}
+  - component: {fileID: 1549097284}
   m_Layer: 0
   m_Name: Ship
   m_TagString: Untagged
@@ -1575,7 +1604,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: abcbf20d3104a4444ba0de4854ce2102, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  radius: 1
+  radius: 0.5
 --- !u!114 &1549097283
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1588,6 +1617,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a0cbe2e74a7d9f247b4fdcef171e8505, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1549097284
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1549097276}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 903c417af621439419c8df4bd895c8cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hitPoints: 100
 --- !u!1 &1596765098
 GameObject:
   m_ObjectHideFlags: 0
