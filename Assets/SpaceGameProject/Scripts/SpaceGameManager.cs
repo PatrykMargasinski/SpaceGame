@@ -6,7 +6,6 @@ public class SpaceGameManager : MonoBehaviour
 {
     public GameObject player;
     AsteroidFactory asteroidFactory;
-    public GameObject toGenerate;
     public float radius;
     public float radiusMin;
     public float disappearingRadius;
